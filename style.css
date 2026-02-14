@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#1e1b2e,#2b2447);
+    font-family:'Poppins',sans-serif;
+}
+
+.container{
+    position:relative;
+    perspective: 1000px;
+}
+
+.envelope{
+    position:relative;
+    width:300px;
+    height:200px;
+    background:#fff;
+    border-radius:6px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:0.5s;
+}
+
+/* Nắp phong bì */
+.envelope-flap{
+    transform-origin: top;
+    transform: rotateX(0deg);
+}
+
+
+/* Thiệp bên trong */
+.letter{
+    position:absolute;
+    width:260px;
+    height:180px;
+    background:#ffffff;
+    top:20px;
+    left:20px;
+    text-align:center;
+    padding-top:30px;
+    transition:0.6s;
+    z-index:2;
+    box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+
+.letter h1{
+    font-family:'Great Vibes',cursive;
+    font-size:38px;
+    color:#e91e63;
+}
+
+.letter h2{
+    font-size:20px;
+    font-weight:300;
+}
+
+.letter h3{
+    margin-top:10px;
+    font-weight:500;
+}
+
+/* Hover animation */
+.envelope:hover .letter{
+    transform:translateY(-120px);
+}
+
+.envelope:hover .envelope-flap{
+    transform: rotateX(-180deg);
+}
+
+
+.envelope,
+.envelope-flap,
+.letter {
+    will-change: transform;
+    backface-visibility: hidden;
+}
