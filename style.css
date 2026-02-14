@@ -13,75 +13,90 @@ body{
     align-items:center;
     background:linear-gradient(135deg,#1e1b2e,#2b2447);
     font-family:'Poppins',sans-serif;
+    overflow:hidden;
 }
 
 .container{
-    position:relative;
-    perspective: 1000px;
+    perspective:1200px;
 }
 
 .envelope{
     position:relative;
-    width:300px;
-    height:200px;
+    width:420px;
+    height:280px;
     background:#fff;
-    border-radius:6px;
-    overflow:hidden;
+    border-radius:10px;
     cursor:pointer;
-    transition:0.5s;
+    transform-style:preserve-3d;
+    transition:0.6s;
 }
 
-/* Nắp phong bì */
-.envelope-flap{
-    transform-origin: top;
-    transform: rotateX(0deg);
+.flap{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:#f8f8f8;
+    clip-path:polygon(0 0, 50% 50%, 100% 0);
+    transform-origin:top;
+    transition:0.8s;
+    z-index:3;
 }
 
-
-/* Thiệp bên trong */
 .letter{
     position:absolute;
-    width:260px;
-    height:180px;
-    background:#ffffff;
+    width:380px;
+    height:240px;
+    background:linear-gradient(135deg,#fff,#ffe6f0);
     top:20px;
     left:20px;
     text-align:center;
-    padding-top:30px;
-    transition:0.6s;
-    z-index:2;
-    box-shadow:0 10px 20px rgba(0,0,0,0.2);
+    padding:30px;
+    border-radius:8px;
+    transition:0.8s;
+    box-shadow:0 20px 40px rgba(0,0,0,0.3);
 }
 
 .letter h1{
     font-family:'Great Vibes',cursive;
-    font-size:38px;
+    font-size:52px;
     color:#e91e63;
 }
 
 .letter h2{
-    font-size:20px;
     font-weight:300;
 }
 
-.letter h3{
-    margin-top:10px;
-    font-weight:500;
+.letter p{
+    margin-top:15px;
+    font-size:18px;
 }
 
-/* Hover animation */
-.envelope:hover .letter{
-    transform:translateY(-120px);
+/* Open state */
+
+.envelope.open .letter{
+    transform:translateY(-170px);
 }
 
-.envelope:hover .envelope-flap{
-    transform: rotateX(-180deg);
+.envelope.open .flap{
+    transform:rotateX(-180deg);
 }
 
+/* Hearts */
 
-.envelope,
-.envelope-flap,
-.letter {
-    will-change: transform;
-    backface-visibility: hidden;
+.hearts span{
+    position:absolute;
+    bottom:-20px;
+    font-size:20px;
+    animation:float 6s linear infinite;
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(0) scale(1);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-100vh) scale(1.5);
+        opacity:0;
+    }
 }
